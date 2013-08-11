@@ -7,6 +7,7 @@
 - [Why JFL?](#why-jfl)
 - [A Quick Tour](#a-quick-tour)
 - [C# Library](#c-library)
+	- [Downloads](#downloads)
 	- [API Documentation](#api-documentation)
 	- [Source Notes](#source-notes)
 	- [Limitations](#limitations)
@@ -488,6 +489,8 @@ In the above example JFL, the nested block within habitats only returned key-val
 ### C# Library
 
 Initially, I have built a C# JFL library that allows users to leverage *most* of JFL's intended functionality in a native environment. While this implementation is usable, its lack of complete feature parity (explained in more detail [below](#limitations)) and performance issues (also explained [below](#limitations)) might render it as more of a "proof-of-concept" to some. Be aware of these issues if you decide to include this library in your project.
+
+####Downloads
 
 To download the required binaries, grab the latest release [here](https://github.com/brad-ross-35/jfl/releases/tag/v0.1.0).
 
