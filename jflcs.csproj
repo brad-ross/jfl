@@ -70,7 +70,6 @@
     <None Include="lib\Antlr3.Runtime.dll" />
     <None Include="lib\Newtonsoft.Json.dll" />
     <None Include="build\generate-parser.sh" />
-    <None Include="src\parser\.DS_Store" />
     <None Include="src\parser\grammar\JFL.g" />
     <None Include="src\parser\grammar\JFL.tokens" />
     <None Include="src\parser\grammar\JFLWalker.g" />

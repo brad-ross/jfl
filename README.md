@@ -10,74 +10,76 @@ Often, JSON contains more information than the client requesting it will end up 
 
 In order to take a look at JFL's features, here is a sample JSON object that will be referenced as the object we are filtering in examples. Meet Tom:
 
-	{
-		"name": "Tom",
-		"age": 13,
-		"alive": true,
-		"zoo": "San Francisco",
-		"species": {
-			"name": "cat",
-			"kingdom": "Animal",
-			"extinct": false,
-			"ancestor": "Saber-Tooth Tiger"
-		},
-		"tagged !": true,
-		"diet": [
-			"fish",
-			"mice",
-			"cat food"
-		],
-		"children": [
-			{
-				"name": "Jerry",
-				"age": 6,
-				"alive": false,
-				"zoo": null,
-				"tagged !": false,
-				"species": {
-					"name": "cat",
-					"kingdom": "Animal",
-					"extinct": false,
-					"ancestor": "Saber-Tooth Tiger"
-				},
-				children: [{
-					"name": "Jim",
-					"age": 1,
-					"alive": true,
-					"zoo": "San Francisco",
-					"species": {
-						"name": "cat",
-						"kingdom": "Animal",
-						"extinct": false,
-						"ancestor": "Saber-Tooth Tiger"
-					}
-				}]
+```json
+{
+	"name": "Tom",
+	"age": 13,
+	"alive": true,
+	"zoo": "San Francisco",
+	"species": {
+		"name": "cat",
+		"kingdom": "Animal",
+		"extinct": false,
+		"ancestor": "Saber-Tooth Tiger"
+	},
+	"tagged !": true,
+	"diet": [
+		"fish",
+		"mice",
+		"cat food"
+	],
+	"children": [
+		{
+			"name": "Jerry",
+			"age": 6,
+			"alive": false,
+			"zoo": null,
+			"tagged !": false,
+			"species": {
+				"name": "cat",
+				"kingdom": "Animal",
+				"extinct": false,
+				"ancestor": "Saber-Tooth Tiger"
 			},
-			{
-				"name": "Larry",
-				"age": 4,
+			children: [{
+				"name": "Jim",
+				"age": 1,
 				"alive": true,
-				"tagged !": true,
-				"zoo": San Francisco,
+				"zoo": "San Francisco",
 				"species": {
 					"name": "cat",
 					"kingdom": "Animal",
 					"extinct": false,
 					"ancestor": "Saber-Tooth Tiger"
 				}
-			}
-		],
-		"habitats": {
-			"Kitchen": {
-				"name": "Kitchen",
-				"score": 10
-			},
-			"LivingRoom": {
-				"name": "Living Room",
-				"score": 7
+			}]
+		},
+		{
+			"name": "Larry",
+			"age": 4,
+			"alive": true,
+			"tagged !": true,
+			"zoo": San Francisco,
+			"species": {
+				"name": "cat",
+				"kingdom": "Animal",
+				"extinct": false,
+				"ancestor": "Saber-Tooth Tiger"
 			}
 		}
+	],
+	"habitats": {
+		"Kitchen": {
+			"name": "Kitchen",
+			"score": 10
+		},
+		"LivingRoom": {
+			"name": "Living Room",
+			"score": 7
+		}
 	}
+}
+```
 
 JFL expressions consist of blocks (enclosed by curly braces), evocative of JSON:
 
@@ -87,22 +89,24 @@ JFL expressions consist of blocks (enclosed by curly braces), evocative of JSON:
 
 ***Resultant JSON:***
 
-	{
-		"name": "Tom",
-		"age": 13,
-		"alive": true,
-		"species": {
-			"name": "cat",
-			"kingdom": "Animal",
-			"extinct": false,
-			"ancestor": "Saber-Tooth Tiger"
-		},
-		"diet": [
-			"fish",
-			"mice",
-			"cat food"
-		]
-	}
+```json
+{
+	"name": "Tom",
+	"age": 13,
+	"alive": true,
+	"species": {
+		"name": "cat",
+		"kingdom": "Animal",
+		"extinct": false,
+		"ancestor": "Saber-Tooth Tiger"
+	},
+	"diet": [
+		"fish",
+		"mice",
+		"cat food"
+	]
+}
+```
 
 This JFL expression reads as "return name, age, alive, species, and diet for this JSON object." Order of key names doesn't matter, so `{species,alive,name,diet,age}` would return the same filtered JSON object. Blocks can contain any key, whether its value is a primitive (boolean, number, string, etc.), an object, or an array.
 
@@ -114,8 +118,9 @@ If you include a key name in your JFL expression that is not present in the JSON
 
 **Resultant JSON:**
 
-	{}
-
+```json
+{}
+```
 Since you asked for only the values of `test` and `testTwo`, neither of which exist in Tom, an empty object is returned.
 
 If you want to filter an object contained within a key, you can specify a nested block, like so:
@@ -126,13 +131,15 @@ If you want to filter an object contained within a key, you can specify a nested
 
 **Resultant JSON:**
 
-	{
-		"name": "Tom",
-		"species": {
-			"name": "cat",
-			"extinct": false
-		}
+```json
+{
+	"name": "Tom",
+	"species": {
+		"name": "cat",
+		"extinct": false
 	}
+}
+```
 
 What if you want to include every property, but you want to specify a specific nested block for just one key? Just use the `*` shortcut as a key name to signify the rest of the keys in the object:
 
@@ -142,17 +149,19 @@ What if you want to include every property, but you want to specify a specific n
 
 **Resultant JSON:**
 
-	{
-		"name": "Tom",
-		"age": 13,
-		"alive": true,
-		"zoo": "San Francisco",
-		"species": {
-			"name": "cat",
-			"extinct": false
-		},
-		...
-	}
+```json
+{
+	"name": "Tom",
+	"age": 13,
+	"alive": true,
+	"zoo": "San Francisco",
+	"species": {
+		"name": "cat",
+		"extinct": false
+	},
+	...
+}
+```
 
 This way, you don't have to list every key just to filter one nested object.
 
@@ -164,24 +173,26 @@ In addition, you can specify properties you don't want to include by attaching a
 
 **Resultant JSON:**
 
-	{
-		"name": "Tom",
-		"age": 13,
-		"alive": true,
-		"zoo": "San Francisco",
-		"species": {
-			"name": "cat",
-			"kingdom": "Animal",
-			"extinct": false,
-			"ancestor": "Saber-Tooth Tiger"
-		},
-		"tagged !": true,
-		"diet": [
-			"fish",
-			"mice",
-			"cat food"
-		]
-	}
+```json
+{
+	"name": "Tom",
+	"age": 13,
+	"alive": true,
+	"zoo": "San Francisco",
+	"species": {
+		"name": "cat",
+		"kingdom": "Animal",
+		"extinct": false,
+		"ancestor": "Saber-Tooth Tiger"
+	},
+	"tagged !": true,
+	"diet": [
+		"fish",
+		"mice",
+		"cat food"
+	]
+}
+```
 
 This is great shorthand for fetching all keys except for certain ones.
 
@@ -193,10 +204,12 @@ If a JSON key contains characters used or ignored in JFL (numbers, whitespace, `
 
 **Resultant JSON:**
 
-	{
-		"name": "Tom",
-		"tagged !": true
-	}
+```json
+{
+	"name": "Tom",
+	"tagged !": true
+}
+```
 
 What about filtering each object in an array of objects? JFL has you covered:
 
@@ -206,18 +219,20 @@ What about filtering each object in an array of objects? JFL has you covered:
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Jerry",
-				"age": 6
-			},
-			{
-				"name": "Larry",
-				"age": 4
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Jerry",
+			"age": 6
+		},
+		{
+			"name": "Larry",
+			"age": 4
+		}
+	]
+}
+```
 
 JFL knows that the value contained within the `children` key is an array, and applies the nested block to every item in the array. You can think of this JFL expression as "return name and age of each object within children."
 
@@ -231,14 +246,16 @@ JFL allows you to specify filters for keys that contain arrays. The resultant ar
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Jerry",
-				"age": 6
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Jerry",
+			"age": 6
+		}
+	]
+}
+```
 
 **JFL Expression:**
 
@@ -246,14 +263,16 @@ JFL allows you to specify filters for keys that contain arrays. The resultant ar
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Jerry",
-				"age": 6
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Jerry",
+			"age": 6
+		}
+	]
+}
+```
 
 **JFL Expression:**
 
@@ -261,14 +280,16 @@ JFL allows you to specify filters for keys that contain arrays. The resultant ar
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Jerry",
-				"age": 6
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Jerry",
+			"age": 6
+		}
+	]
+}
+```
 
 **JFL Expression:**
 
@@ -276,14 +297,16 @@ JFL allows you to specify filters for keys that contain arrays. The resultant ar
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Larry",
-				"age": 4
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Larry",
+			"age": 4
+		}
+	]
+}
+```
 
 Boolean expressions within array filters are similar to C-style languages. Just use `=` (or `!=`, `<`, `>=`, etc.) to compare values. The default scope of the variables in array filters is that of each object within the array. You can read the first expression as "return name and age of objects within children where age of the object is less than five," and the second as "return name and age of objects within children where name of the object is "Jerry"." Filtering doesn't have to come with nested blocks--just filter an array and leave the whole object: `{children[name="Jerry"]}`.
 
@@ -295,14 +318,16 @@ You can also compare keys with string values to regular expressions by using `=`
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Jerry",
-				"age": 6
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Jerry",
+			"age": 6
+		}
+	]
+}
+```
 
 You can use keys that contain booleans as boolean values, like so:
 
@@ -312,14 +337,16 @@ You can use keys that contain booleans as boolean values, like so:
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Jerry",
-				"age": 6
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Jerry",
+			"age": 6
+		}
+	]
+}
+```
 
 To check whether a key exists within each object, attach the "existential operator"--`?` (inspired by [Coffeescript](coffeescript.org))--to the end of a property name:
 
@@ -329,14 +356,16 @@ To check whether a key exists within each object, attach the "existential operat
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Jerry",
-				"age": 6
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Jerry",
+			"age": 6
+		}
+	]
+}
+```
 
 Here, only Jerry contains a key for `children`, so he is the only object not removed.
 
@@ -348,18 +377,20 @@ Use dot notation to access nested object values:
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Jerry",
-				"age": 6
-			},
-			{
-				"name": "Larry",
-				"age": 4
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Jerry",
+			"age": 6
+		},
+		{
+			"name": "Larry",
+			"age": 4
+		}
+	]
+}
+```
 
 "Escaped properties" (see above) can also be used to access properties whose names need to be escaped:
 
@@ -369,14 +400,16 @@ Use dot notation to access nested object values:
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Larry",
-				"age": 4
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Larry",
+			"age": 4
+		}
+	]
+}
+```
 
 Escaped properties also work in conjunction with the dot operator--`{children[species.'test ~'!=null]:{name,age}}` would be valid assuming that the `test ~` property existed within any child's `species` property.
 
@@ -388,18 +421,20 @@ You can also chain boolean expressions by using `&` (AND), `|` (OR), and parenth
 
 **Resultant JSON:**
 
-	{
-		"children": [
-			{
-				"name": "Jerry",
-				"age": 6
-			},
-			{
-				"name": "Larry",
-				"age": 4
-			}
-		]
-	}
+```json
+{
+	"children": [
+		{
+			"name": "Jerry",
+			"age": 6
+		},
+		{
+			"name": "Larry",
+			"age": 4
+		}
+	]
+}
+```
 
 Sometimes, objects can have variable key names, such as Tom's `habitats` key. Each key in the `habitats` object is mapped to the name of the object it contains. If a different animal had different habitats, then that habitats object would have different keys. How can we gain consistent access to these nested objects, and how can we filter objects with variable keys as we did with arrays? JFL provides the ability to specify regular expressions (within `/`s) to match key names:
 
@@ -409,14 +444,16 @@ Sometimes, objects can have variable key names, such as Tom's `habitats` key. Ea
 
 **Resultant JSON:**
 
-	{
-		habitats: {
-			"Kitchen": {
-				"name": "Kitchen",
-				"score": 10
-			}
+```json
+{
+	habitats: {
+		"Kitchen": {
+			"name": "Kitchen",
+			"score": 10
 		}
 	}
+}
+```
 
 In the above example JFL, the nested block within habitats only returned key-value pairs whose key name matched the regular expression. This makes filtering objects contained within variable key names a breeze:
 
@@ -426,13 +463,15 @@ In the above example JFL, the nested block within habitats only returned key-val
 
 **Resultant JSON:**
 
-	{
-		habitats: {
-			"Kitchen": {
-				"score": 10
-			}
+```json
+{
+	habitats: {
+		"Kitchen": {
+			"score": 10
 		}
 	}
+}
+```
 	
 ### C# Library
 
@@ -446,97 +485,109 @@ To use the source, refer to the Source Notes section below.
 
 The C# library uses a `JFLExpression` object to represent JFL expressions. Pass a valid JFL string to the constructor to create a new expression:
 
-	var expression = new JFLExpression("{name,age,species:{name}}");
+```csharp
+var expression = new JFLExpression("{name,age,species:{name}}");
+```
 	
 You can then get a string of filtered JSON using `JFLExpression.GetRefinedJsonString`, which can take either a JSON string, or any C# object:
 
-	string tomString = @"
-		{
-			"name": "Tom",
-			"age": 13,
-			"species": {
-				"name": "cat",
-				"kingdom": "Animal",
-				"extinct": false,
-				"ancestor": "Saber-Tooth Tiger"
-			}
-		}
-	";
-														
-	var tomObject = new Animal {
-		name = "Tom",
-		age = 13,
-		species = new Species {
-			name = "cat",
-			kingdom = "Animal",
-			extinct = false,
-			ancestor = "Saber-Tooth Tiger"
+```csharp
+string tomString = @"
+	{
+		"name": "Tom",
+		"age": 13,
+		"species": {
+			"name": "cat",
+			"kingdom": "Animal",
+			"extinct": false,
+			"ancestor": "Saber-Tooth Tiger"
 		}
 	}
-														
-	string filteredJsonStringOne = expression.GetRefinedJsonString(tomString);
-	string filteredJsonStringTwo = expression.GetRefinedJsonString(tomObject);
-	
-	/* Both calls will output:
-		{
-			"name": "Tom",
-			"age": 13,
-			"species": {
-				"name": "cat"
-			}
+";
+													
+var tomObject = new Animal {
+	name = "Tom",
+	age = 13,
+	species = new Species {
+		name = "cat",
+		kingdom = "Animal",
+		extinct = false,
+		ancestor = "Saber-Tooth Tiger"
+	}
+}
+													
+string filteredJsonStringOne = expression.GetRefinedJsonString(tomString);
+string filteredJsonStringTwo = expression.GetRefinedJsonString(tomObject);
+
+/* Both calls will output:
+	{
+		"name": "Tom",
+		"age": 13,
+		"species": {
+			"name": "cat"
 		}
-	*/
+	}
+*/
+```
 	
 In addition, the library provides a static method `JFLExpression.GetRefinedJsonStringFromJFL` that takes a JFL expression and either a JSON string or a C# object and returns a filtered JSON string:
 
-	string filteredJsonThree = 
-				JFLExpression.GetRefinedJsonStringFromJFL("{name,age,species:{name}}", tomString);																													
-	string filteredJsonFour = 
-				JFLExpression.GetRefinedJsonStringFromJFL("{name,age,species:{name}}", tomObject);
-																																	
-	/* Both calls will output:
-		{
-			"name": "Tom",
-			"age": 13,
-			"species": {
-				"name": "cat"
-			}
+```csharp
+string filteredJsonThree = 
+			JFLExpression.GetRefinedJsonStringFromJFL("{name,age,species:{name}}", tomString);																													
+string filteredJsonFour = 
+			JFLExpression.GetRefinedJsonStringFromJFL("{name,age,species:{name}}", tomObject);
+																																
+/* Both calls will output:
+	{
+		"name": "Tom",
+		"age": 13,
+		"species": {
+			"name": "cat"
 		}
-	*/
+	}
+*/
+```
 
 The above methods comprise the complete public API. However, the C# library also contains an error reporting system for invalid inputs. All exceptions thrown by JFL inherit from `JFLException`.
 
 If you pass a JFL function an empty or null JFL or JSON string or a null C# object, a `JFLArgumentException` will be thrown:
 
-	try {
-		var expressionOne = new JFLExpression("");
-		var expressionTwo = new JFLExpression(null);
-		
-		string filteredJsonStrOne = expressionOne.GetFilteredJsonString("");
-		string filteredJsonStrTwo = expressionTwo.GetFilteredJsonString(null);
-		
-		string staticJsonStrOne = JFLExpression.GetFilteredJsonStringFromJFL("", "");
-		string staticJsonStrTwo = JFLExpression.GetFilteredJsonStringFromJFL(null, null);
-	} catch (JFLArgumentException e) {
-		Console.WriteLine(e.Message);
-	}
+```csharp
+try {
+	var expressionOne = new JFLExpression("");
+	var expressionTwo = new JFLExpression(null);
+	
+	string filteredJsonStrOne = expressionOne.GetFilteredJsonString("");
+	string filteredJsonStrTwo = expressionTwo.GetFilteredJsonString(null);
+	
+	string staticJsonStrOne = JFLExpression.GetFilteredJsonStringFromJFL("", "");
+	string staticJsonStrTwo = JFLExpression.GetFilteredJsonStringFromJFL(null, null);
+} catch (JFLArgumentException e) {
+	Console.WriteLine(e.Message);
+}
+```
 	
 If you try to pass invalid JFL or JSON into a library function, either a `JFLInvalidJFLException` or a `JFLInvalidJsonException` will be thrown. Both inherit from `JFLInvalidTextException`, which contains a line number and a line position where in the string the error occurred:
 
-	try {
-		var expression = new JFLExpression("{name,age");
-		string filteredJson = expression.GetFilteredJsonString("{"name": "Tom" "age": 13"});
-	} catch (JFLInvalidTextException e) {
-		Console.WriteLine("Error: " + e.LineNumber + ":" + e.LinePosition);
-	}
+```csharp
+try {
+	var expression = new JFLExpression("{name,age");
+	string filteredJson = expression.GetFilteredJsonString("{"name": "Tom" "age": 13"});
+} catch (JFLInvalidTextException e) {
+	Console.WriteLine("Error: " + e.LineNumber + ":" + e.LinePosition);
+}
+```
 	
 Finally, If you try to include an invalid regular expression in your JFL, a `JFLInvalidRegexException` will be thrown with a message explaining the error:
 
-	try {
-		var expression = new JFLExpression("{children[name=/^J/],habitats{/^K/}}");
-	} catch (JFLInvalidRegexException e) {
-		Console.WriteLine(e.Message);
-	}
+```csharp
+try {
+	var expression = new JFLExpression("{children[name=/^J/],habitats{/^K/}}");
+} catch (JFLInvalidRegexException e) {
+	Console.WriteLine(e.Message);
+}
+```
 
 #### Source Notes
 
