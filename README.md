@@ -509,13 +509,13 @@ You can then get a string of filtered JSON using `JFLExpression.GetRefinedJsonSt
 ```csharp
 string tomString = @"
 	{
-		"name": "Tom",
-		"age": 13,
-		"species": {
-			"name": "cat",
-			"kingdom": "Animal",
-			"extinct": false,
-			"ancestor": "Saber-Tooth Tiger"
+		'name': 'Tom',
+		'age': 13,
+		'species': {
+			'name': 'cat',
+			'kingdom': 'Animal',
+			'extinct': false,
+			'ancestor': 'Saber-Tooth Tiger'
 		}
 	}
 ";
@@ -614,8 +614,8 @@ Both the `.sln` and `.csproj` files are included in the source, which should all
 
 As of the original release, the C# library does not support escaped properties (see above) or numbers in key names due to some strange issues with the [ANTLR](http://www.antlr.org/) parser generator. Hopefully it will be fixed in a future version of JFL.
 
-In addition, this library suffers from performance issues when filtering large JSON inputs. This dip is due to how the filtering algorithm is structured. In the future, a new version may be built to run much faster, but for now, wait for other libraries if you want to filter large JSON.
+In addition, this library suffers from performance issues when filtering large JSON inputs. This dip is due to how the filtering algorithm is structured. Try it, and if it doesn't suit your needs wait for other libraries to be built, or contribute your own.
 
 ### Conclusion
 
-While many hours have gone into this project, it is by no means a finished product. The success of JFL depends on other developers building libraries in other languages and integrating it into their APIs. While I want to continue overseeing JFL, it remains to be seen how much more work I can put into this project myself. Constructive suggestions are encouraged, but others who are willing to continue championing the project are even more welcome. I look forward to seeing where others take JFL in the future.
+While many hours have gone into this project, it is by no means a finished product. The success of JFL depends on other developers building libraries in other languages and integrating it into their APIs. While I want to continue overseeing JFL, it remains to be seen how much more work I can put into this project myself. Constructive suggestions are encouraged, but others who are willing to continue championing the project are even more welcome. I look forward to seeing where others take JFL in the future. Contact me with suggestions or send me links to new implementations or improvements at brad.ross.35@gmail.com.
