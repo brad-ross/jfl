@@ -2,7 +2,7 @@
 
 *A simple, yet powerful syntax for specifying minimized, data-efficient JSON*
 
-**Table of Contents**
+## Table of Contents
 
 - [Why JFL?](#why-jfl)
 - [A Quick Tour](#a-quick-tour)
