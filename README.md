@@ -41,25 +41,27 @@ In order to take a look at JFL's features, here is a sample JSON object that wil
 				"extinct": false,
 				"ancestor": "Saber-Tooth Tiger"
 			},
-			children: [{
-				"name": "Jim",
-				"age": 1,
-				"alive": true,
-				"zoo": "San Francisco",
-				"species": {
-					"name": "cat",
-					"kingdom": "Animal",
-					"extinct": false,
-					"ancestor": "Saber-Tooth Tiger"
+			"children": [
+				{
+					"name": "Jim",
+					"age": 1,
+					"alive": true,
+					"zoo": "San Francisco",
+					"species": {
+						"name": "cat",
+						"kingdom": "Animal",
+						"extinct": false,
+						"ancestor": "Saber-Tooth Tiger"
+					}
 				}
-			}]
+			]
 		},
 		{
 			"name": "Larry",
 			"age": 4,
 			"alive": true,
 			"tagged !": true,
-			"zoo": San Francisco,
+			"zoo": "San Francisco",
 			"species": {
 				"name": "cat",
 				"kingdom": "Animal",
@@ -446,7 +448,7 @@ Sometimes, objects can have variable key names, such as Tom's `habitats` key. Ea
 
 ```json
 {
-	habitats: {
+	"habitats": {
 		"Kitchen": {
 			"name": "Kitchen",
 			"score": 10
@@ -465,14 +467,14 @@ In the above example JFL, the nested block within habitats only returned key-val
 
 ```json
 {
-	habitats: {
+	"habitats": {
 		"Kitchen": {
 			"score": 10
 		}
 	}
 }
 ```
-	
+
 ### C# Library
 
 Initially, I have built a C# JFL library that allows users to leverage *most* of JFL's intended functionality in a native environment. While this implementation is usable, its lack of complete feature parity (explained in more detail below) and performance issues (also explained below) might render it as more of a "proof-of-concept" to some. Be aware of these issues if you decide to include this library in your project.
