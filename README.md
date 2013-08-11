@@ -2,6 +2,16 @@
 
 *A simple, yet powerful syntax for specifying minimized, data-efficient JSON*
 
+**Table of Contents**
+
+- [Why JFL?](#why-jfl)
+- [A Quick Tour](#a-quick-tour)
+- [C# Library](#c-library)
+	- [API Documentation](#api-documentation)
+	- [Source Notes](#source-notes)
+	- [Limitations](#limitations)
+- [Conclusion](#conclusion)
+
 ### Why JFL?
 
 Often, JSON contains more information than the client requesting it will end up using. In addition, mobile data networks are restricted in data-transfer speed, necessitating smaller data packages to maximize responsiveness. Rather than be hampered by the various costs of dealing with extra data, clients should only need to deal with information that they specifically need. Some languages (such as [JSONPath](http://goessner.net/articles/JsonPath/)) allow clients to query existing JSON (a la SQL) and retrieve specific data from it--however, in doing so they lose the original JSON structure. Inspired in part by the Google API's ["fields" parameter](https://developers.google.com/google-apps/calendar/performance#partial), JFL allows clients to minimize the data carried by JSON by applying a custom pattern.
@@ -477,11 +487,11 @@ In the above example JFL, the nested block within habitats only returned key-val
 
 ### C# Library
 
-Initially, I have built a C# JFL library that allows users to leverage *most* of JFL's intended functionality in a native environment. While this implementation is usable, its lack of complete feature parity (explained in more detail below) and performance issues (also explained below) might render it as more of a "proof-of-concept" to some. Be aware of these issues if you decide to include this library in your project.
+Initially, I have built a C# JFL library that allows users to leverage *most* of JFL's intended functionality in a native environment. While this implementation is usable, its lack of complete feature parity (explained in more detail [below](#limitations)) and performance issues (also explained [below](#limitations)) might render it as more of a "proof-of-concept" to some. Be aware of these issues if you decide to include this library in your project.
 
-To download the required binaries, grab the latest release here.
+To download the required binaries, grab the latest release [here](https://github.com/brad-ross-35/jfl/releases/tag/v0.1.0).
 
-To use the source, refer to the Source Notes section below.
+To use the source, download the code from this repository and refer to the [Source Notes](#source-notes) section below.
 
 #### API Documentation
 
@@ -595,13 +605,13 @@ try {
 
 Currently, the build scripts included in `./build` are only Bash. As a result, you will have to build the source using [Mono](http://www.mono-project.com) on a Linux-based operating system if you want the build process to automatically generate the parser and create a zip containing all of the required `.dll`s.
 
-Both the `.sln` and `.csproj` files are included in the source, which should allow you to use Monodevelop (or Xamarin Studio) to build automatically if you prefer an IDE.
+Both the `.sln` and `.csproj` files are included in the source, which should allow you to use [Monodevelop](http://monodevelop.com/) to build automatically if you prefer an IDE.
 
 #### Limitations
 
 As of the original release, the C# library does not support escaped properties (see above) or numbers in key names due to some strange issues with the [ANTLR](http://www.antlr.org/) parser generator. Hopefully it will be fixed in a future version of JFL.
 
-In addition, this library suffers from performance issues when filtering large JSON inputs. This dip is due to how the filtering algorithm is structured. In the future, a new version may be built to run much faster, but for now, wait for other libraries if you want to filter JSON larger than 200 lines.
+In addition, this library suffers from performance issues when filtering large JSON inputs. This dip is due to how the filtering algorithm is structured. In the future, a new version may be built to run much faster, but for now, wait for other libraries if you want to filter large JSON.
 
 ### Conclusion
 
