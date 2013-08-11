@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{44DD36B7-94B4-4A75-866B-043F00550B7F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>JFLCSharp</RootNamespace>
+    <AssemblyName>JFLCSharp</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="build/generate-parser.sh" workingdir="" externalConsole="True" />
+        <Command type="AfterBuild" command="build/zip-release.sh" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="info\AssemblyInfo.cs" />
+    <Compile Include="src\block\JFLExpressionInterface.cs" />
+    <Compile Include="src\block\JFLExpressionParser.cs" />
+    <Compile Include="src\block\JFLExpressionRefiner.cs" />
+    <Compile Include="src\block\JFLProperty.cs" />
+    <Compile Include="src\exception\JFLArgumentException.cs" />
+    <Compile Include="src\exception\JFLException.cs" />
+    <Compile Include="src\exception\JFLInvalidJsonException.cs" />
+    <Compile Include="src\exception\JFLInvalidRegexException.cs" />
+    <Compile Include="src\exception\JFLInvalidTextException.cs" />
+    <Compile Include="src\filter\BoolExpression.cs" />
+    <Compile Include="src\filter\Comparator.cs" />
+    <Compile Include="src\filter\ComparisonUtility.cs" />
+    <Compile Include="src\filter\FilterTreeNode.cs" />
+    <Compile Include="src\filter\Operands.cs" />
+    <Compile Include="src\parser\JFLLexer.cs" />
+    <Compile Include="src\parser\JFLParser.cs" />
+    <Compile Include="src\parser\JFLWalker.cs" />
+    <Compile Include="src\exception\JFLInvalidJFLException.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="lib\" />
+    <Folder Include="build\" />
+    <Folder Include="src\" />
+    <Folder Include="build\antlr\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\Antlr3.Runtime.dll" />
+    <None Include="lib\Newtonsoft.Json.dll" />
+    <None Include="build\generate-parser.sh" />
+    <None Include="src\parser\.DS_Store" />
+    <None Include="src\parser\grammar\JFL.g" />
+    <None Include="src\parser\grammar\JFL.tokens" />
+    <None Include="src\parser\grammar\JFLWalker.g" />
+    <None Include="src\parser\grammar\JFLWalker.tokens" />
+    <None Include="build\zip-release.sh" />
+    <None Include="build\antlr\Antlr3.Runtime.Debug.dll" />
+    <None Include="build\antlr\Antlr3.Runtime.dll" />
+    <None Include="build\antlr\Antlr3.exe" />
+    <None Include="build\antlr\Antlr3.exe.config" />
+    <None Include="build\antlr\Antlr3.props" />
+    <None Include="build\antlr\Antlr3.targets" />
+    <None Include="build\antlr\Antlr4.StringTemplate.dll" />
+    <None Include="build\antlr\AntlrBuildTask.dll" />
+    <None Include="build\antlr\LICENSE.txt" />
+    <None Include="build\antlr\Codegen\Templates\LeftRecursiveRules.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp2\AST.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp2\ASTDbg.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp2\ASTParser.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp2\ASTTreeParser.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp2\CSharp2.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp2\Dbg.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp2\ST.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp3\AST.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp3\ASTDbg.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp3\ASTParser.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp3\ASTTreeParser.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp3\CSharp3.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp3\Dbg.stg" />
+    <None Include="build\antlr\Codegen\Templates\CSharp3\ST.stg" />
+    <None Include="build\antlr\Targets\Antlr3.Targets.CSharp2.dll" />
+    <None Include="build\antlr\Targets\Antlr3.Targets.CSharp3.dll" />
+    <None Include="build\antlr\Tool\Templates\depend.stg" />
+    <None Include="build\antlr\Tool\Templates\dot\dot.stg" />
+    <None Include="build\antlr\Tool\Templates\messages\formats\antlr.stg" />
+    <None Include="build\antlr\Tool\Templates\messages\formats\vs2005.stg" />
+    <None Include="build\antlr\Tool\Templates\messages\languages\en.stg" />
+  </ItemGroup>
+</Project>
