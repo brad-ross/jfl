@@ -15,7 +15,7 @@
 
 ### Why JFL?
 
-Often, JSON contains more information than the client requesting it will end up using. In addition, mobile data networks are restricted in data-transfer speed, necessitating smaller data packages to maximize responsiveness. Rather than be hampered by the various costs of dealing with extra data, clients should only need to deal with information that they specifically need. Some languages (such as [JSONPath](http://goessner.net/articles/JsonPath/)) allow clients to query existing JSON (a la SQL) and retrieve specific data from it--however, in doing so they lose the original JSON structure. Inspired in part by the Google API's ["fields" parameter](https://developers.google.com/google-apps/calendar/performance#partial), JFL allows clients to minimize the data carried by JSON by applying a custom pattern.
+Often, JSON contains more information than the client requesting it will end up using. In addition, mobile data networks are restricted in data-transfer speed, necessitating smaller data packages to maximize responsiveness. Rather than be hampered by the various costs of dealing with extra data, clients should only need to deal with information that they specifically need. Some languages (such as [JSONPath](http://goessner.net/articles/JsonPath/)) allow clients to query existing JSON (a la SQL) and retrieve specific data from it--however, in doing so they lose the original JSON structure. Inspired by Xobni's internal filtering syntax--CAQL--and the Google API's ["fields" parameter](https://developers.google.com/google-apps/calendar/performance#partial), JFL allows clients to minimize the data carried by JSON by applying a custom pattern.
 
 ### A Quick Tour
 
@@ -617,5 +617,7 @@ As of the original release, the C# library does not support escaped properties (
 In addition, this library suffers from performance issues when filtering large JSON inputs. This dip is due to how the filtering algorithm is structured. Try it, and if it doesn't suit your needs wait for other libraries to be built, or contribute your own.
 
 ### Conclusion
+
+JFL would not have been possible without the support of Frank Cort, Francois Richard, Peter Monaco, and the rest of the Xobni team. I cannot thank them enough for their generous support of the project. Also, big thanks to Ryan Gerard, the creator CAQL, Xobni's homegrown filtering language, for inspiring my work on JFL.
 
 While many hours have gone into this project, it is by no means a finished product. The success of JFL depends on other developers building libraries in other languages and integrating it into their APIs. While I want to continue overseeing JFL, it remains to be seen how much more work I can put into this project myself. Constructive suggestions are encouraged, but others who are willing to continue championing the project are even more welcome. I look forward to seeing where others take JFL in the future. Contact me with suggestions or send me links to new implementations or improvements at brad.ross.35@gmail.com.
