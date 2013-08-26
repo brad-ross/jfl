@@ -32,6 +32,8 @@ namespace JFLCSharp
 
 					if (leftOperand.GetType() == typeof(double))
 						leftNumber = (double)leftOperand;
+					else if (leftOperand.GetType() == typeof(int))
+						leftNumber = (int)leftOperand;
 					else if (leftOperand.GetType() == typeof(Int64))
 						leftNumber = (Int64)leftOperand;
 					else if (leftOperand.GetType() == typeof(Single))
@@ -41,6 +43,8 @@ namespace JFLCSharp
 
 					if (rightOperand.GetType() == typeof(double))
 						rightNumber = (double)rightOperand;
+					else if (rightOperand.GetType() == typeof(int))
+						rightNumber = (int)rightOperand;
 					else if (rightOperand.GetType() == typeof(Int64))
 						rightNumber = (Int64)rightOperand;
 					else if (rightOperand.GetType() == typeof(Single))
@@ -72,6 +76,8 @@ namespace JFLCSharp
 
 					if (leftOperand.GetType() == typeof(double))
 						leftNumber = (double)leftOperand;
+					else if (leftOperand.GetType() == typeof(int))
+						leftNumber = (int)leftOperand;
 					else if (leftOperand.GetType() == typeof(Int64))
 						leftNumber = (Int64)leftOperand;
 					else if (leftOperand.GetType() == typeof(Single))
@@ -81,6 +87,8 @@ namespace JFLCSharp
 
 					if (rightOperand.GetType() == typeof(double))
 						rightNumber = (double)rightOperand;
+					else if (rightOperand.GetType() == typeof(int))
+						rightNumber = (int)rightOperand;
 					else if (rightOperand.GetType() == typeof(Int64))
 						rightNumber = (Int64)rightOperand;
 					else if (rightOperand.GetType() == typeof(Single))
@@ -112,6 +120,8 @@ namespace JFLCSharp
 
 					if (leftOperand.GetType() == typeof(double))
 						leftNumber = (double)leftOperand;
+					else if (leftOperand.GetType() == typeof(int))
+						leftNumber = (int)leftOperand;
 					else if (leftOperand.GetType() == typeof(Int64))
 						leftNumber = (Int64)leftOperand;
 					else if (leftOperand.GetType() == typeof(Single))
@@ -121,6 +131,8 @@ namespace JFLCSharp
 
 					if (rightOperand.GetType() == typeof(double))
 						rightNumber = (double)rightOperand;
+					else if (rightOperand.GetType() == typeof(int))
+						rightNumber = (int)rightOperand;
 					else if (rightOperand.GetType() == typeof(Int64))
 						rightNumber = (Int64)rightOperand;
 					else if (rightOperand.GetType() == typeof(Single))
@@ -152,6 +164,8 @@ namespace JFLCSharp
 
 					if (leftOperand.GetType() == typeof(double))
 						leftNumber = (double)leftOperand;
+					else if (leftOperand.GetType() == typeof(int))
+						leftNumber = (int)leftOperand;
 					else if (leftOperand.GetType() == typeof(Int64))
 						leftNumber = (Int64)leftOperand;
 					else if (leftOperand.GetType() == typeof(Single))
@@ -161,6 +175,8 @@ namespace JFLCSharp
 
 					if (rightOperand.GetType() == typeof(double))
 						rightNumber = (double)rightOperand;
+					else if (rightOperand.GetType() == typeof(int))
+						rightNumber = (int)rightOperand;
 					else if (rightOperand.GetType() == typeof(Int64))
 						rightNumber = (Int64)rightOperand;
 					else if (rightOperand.GetType() == typeof(Single))
@@ -192,6 +208,8 @@ namespace JFLCSharp
 
 					if (leftOperand.GetType() == typeof(double))
 						leftNumber = (double)leftOperand;
+					else if (leftOperand.GetType() == typeof(int))
+						leftNumber = (int)leftOperand;
 					else if (leftOperand.GetType() == typeof(Int64))
 						leftNumber = (Int64)leftOperand;
 					else if (leftOperand.GetType() == typeof(Single))
@@ -201,6 +219,8 @@ namespace JFLCSharp
 
 					if (rightOperand.GetType() == typeof(double))
 						rightNumber = (double)rightOperand;
+					else if (rightOperand.GetType() == typeof(int))
+						rightNumber = (int)rightOperand;
 					else if (rightOperand.GetType() == typeof(Int64))
 						rightNumber = (Int64)rightOperand;
 					else if (rightOperand.GetType() == typeof(Single))
@@ -218,6 +238,7 @@ namespace JFLCSharp
 		private static bool IsNumber(this object obj)
 		{   
 			if (obj.GetType() == typeof(double) ||
+			    obj.GetType() == typeof(int) ||
 				obj.GetType() == typeof(Int64) ||
 				obj.GetType() == typeof(Single) || 
 				obj.GetType() == typeof(UInt64))
