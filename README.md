@@ -5,7 +5,7 @@
 ## Table of Contents
 
 - [Why JFL?](#why-jfl)
-- [A Quick Tour](#a-quick-tour)
+- [A Tour](#a-tour)
 - [Potential Use Cases](#potential-use-cases)
 - [C# Library](#c-library)
 	- [Downloads](#downloads)
@@ -19,7 +19,7 @@
 
 Often, JSON contains more information than the client requesting it will end up using. In addition, mobile data networks are restricted in data-transfer speed, necessitating smaller data packages to maximize responsiveness. Rather than be hampered by the various costs of dealing with extra data, clients should only need to deal with information that they specifically need. Some languages (such as [JSONPath](http://goessner.net/articles/JsonPath/)) allow clients to query existing JSON (a la SQL) and retrieve specific data from it--however, in doing so they lose the original JSON structure. Inspired by Xobni's internal filtering syntax--CAQL--and the Google API's ["fields" parameter](https://developers.google.com/google-apps/calendar/performance#partial), JFL allows clients to minimize the data carried by JSON by applying a custom pattern.
 
-### A Quick Tour
+### A Tour
 
 In order to take a look at JFL's features, here is a sample JSON object that will be referenced as the object we are filtering in examples. Meet Tom:
 
@@ -504,7 +504,7 @@ Initially, I have built a C# JFL library that allows users to leverage *most* of
 
 ####Downloads
 
-To download the compiled library (`JFLCSharp.dll`) along with its dependencies (`Antlr3.Runtime.dll` and `Newtonsoft.Json.dll`), grab the latest release [here](https://github.com/brad-ross-35/jfl/releases/tag/v0.1.0).
+To download the compiled library (`JFLCSharp.dll`) along with its dependencies (`Antlr3.Runtime.dll` and `Newtonsoft.Json.dll`), grab the latest release [here](https://github.com/brad-ross-35/jfl/releases).
 
 To use the source, download the code from this repository and refer to the [Source Notes](#source-notes) section below for compilation instructions and more.
 
@@ -626,7 +626,7 @@ Currently, the build scripts included in `./build` are only Bash. As a result, y
 
 Both the `.sln` and `.csproj` files are included in the source, which should allow you to use [Monodevelop](http://monodevelop.com/) to build automatically if you prefer an IDE.
 
-If you would like to use a different version of one or both of JFLCSharp's dependencies--e.g. when you are already using Newtonsoft.Json and/or Antlr3.Runtime in your code--you will have to download the source, remove the old dependencies from the project's References folder, add your new ones, and build. Currently, JFLCSharp uses **Newtonsoft.Json version [version]** and **Antlr3.Runtime version [version]**.
+If you would like to use a different version of one or both of JFLCSharp's dependencies--e.g. when you are already using Newtonsoft.Json and/or Antlr3.Runtime in your code--you will have to download the source, remove the old dependencies from the project's References folder, add your new ones, and build. Currently, JFLCSharp uses **Newtonsoft.Json version 4.5.0.0** and **Antlr3.Runtime assembly version 3.5.0.2**.
 
 As of now, tests have not been included in the csharp project itself so they aren't compiled into the JFLCSharp library. Until a way to prevent this presents itself, you will have to add the file(s) within the `test` folder to the project manually when you download the source, build the source as an executable rather than as a library, and run it manually. The test results will be printed to the console.
 
