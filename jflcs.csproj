@@ -65,6 +65,7 @@
     <Folder Include="build\" />
     <Folder Include="src\" />
     <Folder Include="build\antlr\" />
+    <Folder Include="test\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\Antlr3.Runtime.dll" />
