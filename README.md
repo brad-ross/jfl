@@ -626,6 +626,8 @@ Currently, the build scripts included in `./build` are only Bash. As a result, y
 
 Both the `.sln` and `.csproj` files are included in the source, which should allow you to use [Monodevelop](http://monodevelop.com/) to build automatically if you prefer an IDE.
 
+If you would like to use a different version of one or both of JFLCSharp's dependencies--e.g. when you are already using Newtonsoft.Json and/or Antlr3.Runtime in your code--you will have to download the source, remove the old dependencies from the project's References folder, add your new ones, and build. Currently, JFLCSharp uses **Newtonsoft.Json version [version]** and **Antlr3.Runtime version [version]**.
+
 As of now, tests have not been included in the csharp project itself so they aren't compiled into the JFLCSharp library. Until a way to prevent this presents itself, you will have to add the file(s) within the `test` folder to the project manually when you download the source, build the source as an executable rather than as a library, and run it manually. The test results will be printed to the console.
 
 #### Limitations
