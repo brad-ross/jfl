@@ -6,9 +6,11 @@
 
 - [Why JFL?](#why-jfl)
 - [A Quick Tour](#a-quick-tour)
+- [Potential Use Cases](#potential-use-cases)
 - [C# Library](#c-library)
 	- [Downloads](#downloads)
 	- [API Documentation](#api-documentation)
+	- [Tests](#Tests)
 	- [Source Notes](#source-notes)
 	- [Limitations](#limitations)
 - [Conclusion](#conclusion)
@@ -486,15 +488,25 @@ In the above example JFL, the nested block within habitats only returned key-val
 }
 ```
 
+### Potential Use Cases
+
+The envisioned use of this library is similar to [Google's fields parameter](https://developers.google.com/google-apps/calendar/performance#partial). When a client makes a request to an API--say `www.foo.com`--they would include a query string parameter with their JFL, e.g.
+
+`www.foo.com/bar/42?jfl={children[(alive&!(children?))|(species.name=""cat""&zoo!=null)|test=5]:{name},*,habitats:{/^K/:{score}},!diet}`
+
+`www.foo.com`'s server would then apply the JFL to its default response to `/bar/42` and return that filtered response to the requesting client.
+
+This being said, there could be other applications of JFL waiting to be discovered.
+
 ### C# Library
 
-Initially, I have built a C# JFL library that allows users to leverage *most* of JFL's intended functionality in a native environment. While this implementation is usable, its lack of complete feature parity (explained in more detail [below](#limitations)) and performance issues (also explained [below](#limitations)) might render it as more of a "proof-of-concept" to some. Be aware of these issues if you decide to include this library in your project.
+Initially, I have built a C# JFL library that allows users to leverage *most* of JFL's intended functionality in a native environment. While this implementation is usable, its lack of complete feature parity and performance issues--both explained in detail [below](#limitations)--might render it as more of a "proof-of-concept" to some. Be aware of these issues if you decide to include this library in your project.
 
 ####Downloads
 
-To download the required binaries, grab the latest release [here](https://github.com/brad-ross-35/jfl/releases/tag/v0.1.0).
+To download the compiled library (`JFLCSharp.dll`) along with its dependencies (`Antlr3.Runtime.dll` and `Newtonsoft.Json.dll`), grab the latest release [here](https://github.com/brad-ross-35/jfl/releases/tag/v0.1.0).
 
-To use the source, download the code from this repository and refer to the [Source Notes](#source-notes) section below.
+To use the source, download the code from this repository and refer to the [Source Notes](#source-notes) section below for compilation instructions and more.
 
 #### API Documentation
 
@@ -604,11 +616,17 @@ try {
 }
 ```
 
+#### Tests
+
+Amateurishly, I did not know that testing software like NUnit existed when I first built JFL. As a result, I cobbled together my own test rig at the time and wrote a relatively exhaustive bunch of test cases using it. You can find my testing code in the `test` folder. Currently, I don't have time to learn NUnit and write a new set of tests, but I hope to get this done in the future.
+
 #### Source Notes
 
 Currently, the build scripts included in `./build` are only Bash. As a result, you will have to build the source using [Mono](http://www.mono-project.com) on a Linux-based operating system if you want the build process to automatically generate the parser and create a zip containing all of the required `.dll`s.
 
 Both the `.sln` and `.csproj` files are included in the source, which should allow you to use [Monodevelop](http://monodevelop.com/) to build automatically if you prefer an IDE.
+
+As of now, tests have not been included in the csharp project itself so they aren't compiled into the JFLCSharp library. Until a way to prevent this presents itself, you will have to add the file(s) within the `test` folder to the project manually when you download the source, build the source as an executable rather than as a library, and run it manually. The test results will be printed to the console.
 
 #### Limitations
 
